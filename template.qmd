@@ -1,0 +1,143 @@
+---
+title: Template Test
+runningtitle: T. Test
+format:
+  beamer:
+    template: _extensions\gcpds\gcpds-beamer\template.tex
+    template-partials:
+      - _extensions\gcpds\gcpds-beamer\partials\title.tex
+      - _extensions\gcpds\gcpds-beamer\partials\before-body.tex
+      - _extensions\gcpds\gcpds-beamer\partials\before-bib.tex
+      - _extensions\gcpds\gcpds-beamer\partials\biblio.tex
+    keep-tex: true
+author:
+  - name: Marcos Loaiza Arias
+    corresponding: true
+    email: mloaizaa@unal.edu.co
+    affiliations:
+      - name: Universidad Nacional de Colombia
+        department: Signal Processing and Recognition Group
+        id: 1
+        address: Calle 69
+        postal-code: 170003
+        city: Manizales
+        country: Colombia
+runningauthor: M. Loaiza Arias
+bibliography: biblio.bib
+execute:
+  enabled: false
+date: today
+date-format: long
+jupyter: python3
+---
+
+# Beamer Test
+## Matplotlib Test
+
+
+```{python}
+#| echo: false
+#| label: fig-test
+#| fig-cap: Test Figure
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+fig = plt.figure(figsize=(7,3))
+x = np.linspace(0,2,100)
+y = np.sin(x)
+plt.plot(x,y)
+plt.show()
+```
+
+# Second Test
+## The text test
+
+This test consist in adding text.
+
+We can also add some inline equations such as $y = mx + b$ or centered such as the one presented in @eq-test-equation.
+
+$$
+    y = exp\left(\frac{||x-y||_2^2}{\sigma^2}\right)
+$$ {#eq-test-equation}
+
+## Text and Images
+Now we test adding text and images
+
+```{python}
+#| echo: false
+#| label: fig-test2
+#| fig-cap: Test Figure
+fig = plt.figure(figsize=(7,3), dpi=120)
+x = np.linspace(0,2,100)
+y = np.cos(x)
+plt.plot(x,y)
+plt.show()
+```
+
+Also some text below
+
+## Side by side
+:::: {.columns}
+::: {.column width="50%" align=center}
+Now we add text to the left and a figure to the right
+:::
+::: {.column width="50%" align=center}
+
+```{python}
+#| echo: false
+#| label: fig-test3
+#| fig-cap: Test Figure
+
+fig = plt.figure(figsize=(5,5))
+x = np.random.normal(size=100)
+y = np.random.normal(size=100)
+plt.scatter(x,y)
+plt.show()
+```
+
+:::
+::::
+
+## Side by side
+:::: {.columns}
+::: {.column width="50%" align=center}
+
+```{python}
+#| echo: false
+#| label: fig-test4
+#| fig-cap: Test Figure
+
+fig = plt.figure(figsize=(5,5))
+x = np.random.normal(size=100)
+y = np.random.normal(size=100)
+plt.scatter(x,y)
+plt.show()
+```
+
+:::
+::: {.column width="50%" align=center}
+Now we add text to the right and a figure to the left
+:::
+::::
+
+# Final Test
+## Everything in Python
+
+```{python}
+#| echo: false
+#| label: fig-test5
+#| fig-cap: Test Figure
+fig = plt.figure(figsize=(7,3), dpi=100)
+x = np.linspace(0,2,100)
+y = np.exp(x)
+plt.plot(x,y)
+plt.show()
+```
+
+```{python}
+from IPython.display import Markdown
+Markdown('Now we add both text and figure using python code')
+```
+
+

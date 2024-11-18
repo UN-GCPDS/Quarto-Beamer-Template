@@ -1,0 +1,180 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+
+%\usepackage{utopia} %font utopia importedF
+\usetheme{Oxygen}%{copenhagen}
+%\setbeamertemplate{headline}{}
+
+%\usetheme{Madrid}
+%\usecolortheme{default}
+
+\usepackage{movie15}
+\usepackage{textpos}
+\usepackage{fancybox}
+\usepackage{colortbl}
+\usepackage{rotating}
+%\usepackage{subfigure}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{amsmath,amssymb,amsfonts,amsbsy,dsfont, cancel}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage{array}
+\usepackage[caption=false]{subfig}
+%\usepackage{enumitem}
+
+%\renewcommand*{\bibfont}{\tiny}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcommand{\Real}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}%shrinkage operator
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\bx}{\bm{x}}
+\newcommand{\bX}{\bm{X}}
+\providecommand{\ve}[1]{{\bm {#1}}} %
+\providecommand{\mat}[1]{{\bm {#1}}} %
+\providecommand{\est}[1]{{\widetilde {#1}}}
+\newcommand{\intinf}{\int\limits_{-\infty}^{\infty}}
+\newcommand{\Complex}{\mathbb{C}}
+\newcommand{\To}{\longrightarrow}
+\DeclareMathOperator{\en}{\negthinspace\in }
+\DeclareMathOperator{\igual}{\negthinspace=\negthinspace}
+\DeclareMathOperator{\x}{\negthinspace\times\negthinspace}
+\providecommand{\s}[1]{\negthickspace#1\negthickspace}%
+\providecommand{\am}[1]{\textcolor{blue}{#1}}
+\newcommand{\Xspace}{\mathcal{X}}
+\newcommand{\Hspace}{\mathcal{H}}
+\newcommand{\Pmd}{\mathbb{P}}
+\newcommand{\Qmd}{\mathbb{Q}}
+\usefonttheme{professionalfonts}
+%%%%%%%%%%%%%%%%%%%%%%%%%5
+\DeclareMathAlphabet{\mathantt}{OT1}{antt}{li}{it}
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
+\providecommand{\abs}[1]{\lvert#1\rvert}%
+\providecommand{\norm}[1]{\lVert#1\rVert} %
+\providecommand{\ppunto}[2]{\langle#1,#2\rangle}% producto punto
+\providecommand{\dist}[2]{{ d}(#1, #2)} % distancia
+\providecommand{\promed}[1]{{\fam=8 E}\{#1\}}% operador de promedio
+\providecommand{\cov}[2]{{\fam=7 cov}\{#1, #2\}}% operador de covarianza
+\providecommand{\gaus}[2]{{\fam=6 N}(#1 #2)} % FDP Gauss
+\providecommand{\unif}[1]{{\fam=6 U}(#1 )} % FDP Uniforme
+\providecommand{\ve}[1]{{\bf {#1}}} %
+\providecommand{\mat}[1]{{\bm {#1}}} %
+\providecommand{\est}[1]{{\widetilde {#1}}}
+\providecommand{\diag}[1]{{\rm{diag}}(#1)}% operador diagonal
+\DeclareMathOperator{\subconj}{\negthinspace\subset\negthinspace }
+
+% dummy commands to avoid "Undefined control sequence" error.
+\newcommand{\inst}[1]{#1}
+
+%\providecommand{\am}[1]{\textcolor[rgb]{0.1,0.5,0.0}{\upshape{#1}}}
+%\providecommand{\gc}[1]{\textcolor[rgb]{0.1,0.5,0.0}{\upshape{#1}}}
+\providecommand{\am}[1]{\textcolor{blue}{#1}}
+\providecommand{\gc}[1]{\textcolor{red}{\upshape{#1}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{etoolbox}
+
+\usepackage[nopar]{lipsum} % mock text
+
+\newif\ifcomment
+\newcommand{\Com}{\par\footnotesize\itshape\commenttrue}
+
+\newenvironment{Itemize}
+ {%
+  \edef\Itemizecurrent{\the\font}%
+  \itemize
+  \preto{\item}{\ifcomment\par\Itemizecurrent\fi}%
+ }{%
+   \enditemize
+ }
+
+ \def\@email{}
+ \newcommand{\email}[1]{\gdef\@email{#1}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%
+\title[Title]{Title}
+\author[Author]{Author}
+
+\institute{Department\\ University\\ City, Country}
+
+\date[date]{date}
+%%-------------------------------------------------------------------
+%% Options
+%%-------------------------------------------------------------------
+\setbeamercovered{dynamic}
+\setbeamertemplate{navigation symbols}{}%{footline}
+%\rightline{\insertframenumber/\inserttotalframenumber}}
+%%-------------------------------------------------------------------
+%% Begin
+%%-------------------------------------------------------------------
+\AtBeginSection[]
+{
+  \begin{frame}
+  \frametitle{Outline}
+  %\tiny{\tableofcontents[currentsection]}
+  \tableofcontents[currentsection]
+  \end{frame}
+}
+%-FRAME 1-----------------------------------------------------------
+
+\begin{document}
+\begin{frame}
+    \maketitle
+\end{frame}
+%%-------------------------------------------------------------------
+
+%-FRAME 2-----------------------------------------------------------------------------------------
+\frame
+{ \frametitle{Outline}
+{\small 
+% \tableofcontents[pausesections]
+  \tableofcontents[]}
+}
+
+%----------FRAME ------------------------------------------
+
+\section[Section]{Section Title}
+\subsection{Subsection Title}
+
+\begin{frame}
+	\frametitle{Frame Title}
+    Content
+\end{frame}
+
+
+%%%-------------------------------------------------------------------
+\section[Section]{Section Title 2}
+\subsection{Subsection Title 2}
+
+\begin{frame}
+	\frametitle{Frame Title 2}
+    Content
+\end{frame}
+%%%-------------------------------------------------------------------
+%%thank you
+%%%-------------------------------------------------------------------
+\begin{frame}
+    \begin{center}
+        {\Huge{\textbf{\textcolor[rgb]{0.00,0.00,1.00}{Thank you!}}}}\\
+        \vspace{1cm}
+        Author\\
+        \texttt{email: author@email.com}
+    \end{center}
+\end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[allowframebreaks]
+    \frametitle{References}
+        {\tiny 
+        \bibliographystyle{apalike}
+        \bibliography{biblio,strings,myfile}
+        }
+\end{frame}
+%------------------------------------------------------------------
+\end{document}

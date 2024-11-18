@@ -1,0 +1,351 @@
+\documentclass[
+  ignorenonframetext,
+]{beamer}
+\usepackage[utf8]{inputenc}
+\usetheme{Oxygen}
+
+\usepackage{movie15}
+\usepackage{datetime}
+\usepackage{textpos}
+\usepackage{fancybox}
+\usepackage{colortbl}
+\usepackage{rotating}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{amsmath,amssymb,amsfonts,amsbsy,dsfont, cancel}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage{array}
+\usepackage[caption=false]{subfig}
+%\usepackage{natbib}
+
+%\bibliographystyle{apalike}
+
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcommand{\Real}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}%shrinkage operator
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\bx}{\bm{x}}
+\newcommand{\bX}{\bm{X}}
+\providecommand{\ve}[1]{{\bm {#1}}} %
+\providecommand{\mat}[1]{{\bm {#1}}} %
+\providecommand{\est}[1]{{\widetilde {#1}}}
+\newcommand{\intinf}{\int\limits_{-\infty}^{\infty}}
+\newcommand{\Complex}{\mathbb{C}}
+\newcommand{\To}{\longrightarrow}
+\DeclareMathOperator{\en}{\negthinspace\in }
+\DeclareMathOperator{\igual}{\negthinspace=\negthinspace}
+\DeclareMathOperator{\x}{\negthinspace\times\negthinspace}
+\providecommand{\s}[1]{\negthickspace#1\negthickspace}%
+\providecommand{\am}[1]{\textcolor{blue}{#1}}
+\newcommand{\Xspace}{\mathcal{X}}
+\newcommand{\Hspace}{\mathcal{H}}
+\newcommand{\Pmd}{\mathbb{P}}
+\newcommand{\Qmd}{\mathbb{Q}}
+\usefonttheme{professionalfonts}
+%%%%%%%%%%%%%%%%%%%%%%%%%5
+\DeclareMathAlphabet{\mathantt}{OT1}{antt}{li}{it}
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
+\providecommand{\abs}[1]{\lvert#1\rvert}%
+\providecommand{\norm}[1]{\lVert#1\rVert} %
+\providecommand{\ppunto}[2]{\langle#1,#2\rangle}% producto punto
+\providecommand{\dist}[2]{{ d}(#1, #2)} % distancia
+\providecommand{\promed}[1]{{\fam=8 E}\{#1\}}% operador de promedio
+\providecommand{\cov}[2]{{\fam=7 cov}\{#1, #2\}}% operador de covarianza
+\providecommand{\gaus}[2]{{\fam=6 N}(#1 #2)} % FDP Gauss
+\providecommand{\unif}[1]{{\fam=6 U}(#1 )} % FDP Uniforme
+\providecommand{\ve}[1]{{\bf {#1}}} %
+\providecommand{\mat}[1]{{\bm {#1}}} %
+\providecommand{\est}[1]{{\widetilde {#1}}}
+\providecommand{\diag}[1]{{\rm{diag}}(#1)}% operador diagonal
+\DeclareMathOperator{\subconj}{\negthinspace\subset\negthinspace }
+
+% dummy commands to avoid "Undefined control sequence" error.
+\newcommand{\inst}[1]{#1}
+
+\providecommand{\am}[1]{\textcolor{blue}{#1}}
+\providecommand{\gc}[1]{\textcolor{red}{\upshape{#1}}}
+
+
+\usepackage{etoolbox}
+
+\usepackage[nopar]{lipsum} % mock text
+
+\newif\ifcomment
+\newcommand{\Com}{\par\footnotesize\itshape\commenttrue}
+
+\newenvironment{Itemize}
+ {%
+  \edef\Itemizecurrent{\the\font}%
+  \itemize
+  \preto{\item}{\ifcomment\par\Itemizecurrent\fi}%
+ }{%
+   \enditemize
+ }
+
+ \def\@email{}
+ \newcommand{\email}[1]{\gdef\@email{#1}}
+
+
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+\usepackage{caption}
+% Make caption package work with longtable
+\makeatletter
+\def\fnum@table{\tablename~\thetable}
+\makeatother
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage[square,authoryear]{natbib}
+\bibliographystyle{apalike}
+\renewcommand\bibfont{\scriptsize}
+\usepackage{bookmark}
+
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Template Test},
+  pdfauthor={Marcos Loaiza Arias},
+  pdfcreator={LaTeX via pandoc},
+  unicode=true}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%
+\title[ T. Test ]{ Template Test }
+\author[ M. Loaiza Arias ]{
+      Marcos Loaiza Arias
+  }
+\date[
+      November 18, 2024
+  ]{
+      November 18, 2024
+  }
+\email{
+            mloaizaa@unal.edu.co
+      }
+\institute{
+      Signal Processing and Recognition Group\par
+    Universidad Nacional de Colombia\par
+    Manizales, Colombia
+    }
+%%-------------------------------------------------------------------
+%% Options
+%%-------------------------------------------------------------------
+\setbeamercovered{dynamic}
+\setbeamertemplate{navigation symbols}{}%{footline}
+
+\AtBeginSection[]
+{
+  \begin{frame}
+  \frametitle{Outline}
+  \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\begin{document}
+%Test comment: Before-body.tex
+\begin{frame}
+    \maketitle
+\end{frame}
+
+\frame{
+  \frametitle{Outline}{
+  \small\tableofcontents[]
+  }
+}
+\section{Beamer Test}\label{beamer-test}
+
+\begin{frame}{Matplotlib Test}
+\phantomsection\label{matplotlib-test}
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{beamer_test_files/figure-beamer/fig-test-output-1.png}}
+
+}
+
+\caption{\label{fig-test}Test Figure}
+
+\end{figure}%
+\end{frame}
+
+\section{Second Test}\label{second-test}
+
+\begin{frame}{The text test}
+\phantomsection\label{the-text-test}
+This test consist in adding text.
+
+We can also add some inline equations such as \(y = mx + b\) or centered
+such as the one presented in Equation~\ref{eq-test-equation}.
+
+\begin{equation}\phantomsection\label{eq-test-equation}{
+    y = exp\left(\frac{||x-y||_2^2}{\sigma^2}\right)
+}\end{equation}
+\end{frame}
+
+\begin{frame}{Text and Images}
+\phantomsection\label{text-and-images}
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{beamer_test_files/figure-beamer/fig-test2-output-1.png}}
+
+}
+
+\caption{\label{fig-test2}Test Figure}
+
+\end{figure}%
+
+Some text below alongside some references (\citet{qiang2022attcat},
+\citet{murray2006pepsiman})
+\end{frame}
+
+\begin{frame}{Side by side}
+\phantomsection\label{side-by-side}
+\begin{columns}[T]
+\begin{column}[c]{0.5\linewidth}
+Now we add text to the left and a figure to the right
+\end{column}
+
+\begin{column}[c]{0.5\linewidth}
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{beamer_test_files/figure-beamer/fig-test3-output-1.png}}
+
+}
+
+\caption{\label{fig-test3}Test Figure}
+
+\end{figure}%
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Side by side}
+\phantomsection\label{side-by-side-1}
+\begin{columns}[T]
+\begin{column}[c]{0.5\linewidth}
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{beamer_test_files/figure-beamer/fig-test4-output-1.png}}
+
+}
+
+\caption{\label{fig-test4}Test Figure}
+
+\end{figure}%
+\end{column}
+
+\begin{column}[c]{0.5\linewidth}
+Now we add text to the right and a figure to the left
+\end{column}
+\end{columns}
+\end{frame}
+
+\section{Final Test}\label{final-test}
+
+\begin{frame}{Everything in Python}
+\phantomsection\label{everything-in-python}
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{beamer_test_files/figure-beamer/fig-test5-output-1.png}}
+
+}
+
+\caption{\label{fig-test5}Test Figure}
+
+\end{figure}%
+
+Now we add both text and figure using python code
+\end{frame}
+
+%%%-------------------------------------------------------------------
+%%thank you
+%%%-------------------------------------------------------------------
+\begin{frame}
+    \begin{center}
+        {\Huge{\textbf{\textcolor[rgb]{0.00,0.00,1.00}{Thank you!}}}}\\
+        \vspace{1cm}
+        \insertauthor\\
+                                    \texttt{email:\@email}
+                        \end{center}
+\end{frame}
+    \begin{frame}[allowframebreaks]
+        \frametitle{References}
+            {\bibliography{biblio.bib
+                }
+            }
+    \end{frame}
+
+\end{document}

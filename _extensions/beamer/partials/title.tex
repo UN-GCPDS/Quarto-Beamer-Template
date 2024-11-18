@@ -1,0 +1,42 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%
+\title[$if(runningtitle)$ $runningtitle$ $else$ $title$ $endif$]{$if(title)$ $title$ $endif$}
+\author[$if(runningauthor)$ $runningauthor$ $else$ $for(by-author/first)$ $by-author.name.literal$ $endfor$ $endif$]{
+$if(by-author/allbutlast)$
+  $for(by-author/allbutlast)$
+    $it.value.name.literal$,
+  $endfor$ and
+  $for(by-author/last)$
+    $it.name.literal$
+  $endfor$  
+$else$
+  $for(by-author)$
+    $by-author.name.literal$
+  $endfor$
+$endif$
+}
+\date[
+  $if(date)$
+    $date$
+  $else$
+    \today
+  $endif$]{
+  $if(date)$
+    $date$
+  $else$
+    \today
+  $endif$}
+\email{
+  $for(by-author)$
+    $if(by-author.attributes.corresponding)$
+      $by-author.email$
+    $endif$
+  $endfor$
+}
+\institute{
+  $for(by-affiliation)$
+    $by-affiliation.department$\par
+    $by-affiliation.name$\par
+    $by-affiliation.city$, $by-affiliation.country$
+  $endfor$
+  }

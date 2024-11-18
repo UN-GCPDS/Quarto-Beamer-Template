@@ -1,0 +1,231 @@
+$doc-class.tex()$
+
+\usepackage[utf8]{inputenc}
+\usetheme{Oxygen}
+
+\usepackage{movie15}
+\usepackage{datetime}
+\usepackage{textpos}
+\usepackage{fancybox}
+\usepackage{colortbl}
+\usepackage{rotating}
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{amsmath,amssymb,amsfonts,amsbsy,dsfont, cancel}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{bm}
+\usepackage{array}
+\usepackage[caption=false]{subfig}
+%\usepackage{natbib}
+
+%\bibliographystyle{apalike}
+
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcommand{\Real}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}%shrinkage operator
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\bx}{\bm{x}}
+\newcommand{\bX}{\bm{X}}
+\providecommand{\ve}[1]{{\bm {#1}}} %
+\providecommand{\mat}[1]{{\bm {#1}}} %
+\providecommand{\est}[1]{{\widetilde {#1}}}
+\newcommand{\intinf}{\int\limits_{-\infty}^{\infty}}
+\newcommand{\Complex}{\mathbb{C}}
+\newcommand{\To}{\longrightarrow}
+\DeclareMathOperator{\en}{\negthinspace\in }
+\DeclareMathOperator{\igual}{\negthinspace=\negthinspace}
+\DeclareMathOperator{\x}{\negthinspace\times\negthinspace}
+\providecommand{\s}[1]{\negthickspace#1\negthickspace}%
+\providecommand{\am}[1]{\textcolor{blue}{#1}}
+\newcommand{\Xspace}{\mathcal{X}}
+\newcommand{\Hspace}{\mathcal{H}}
+\newcommand{\Pmd}{\mathbb{P}}
+\newcommand{\Qmd}{\mathbb{Q}}
+\usefonttheme{professionalfonts}
+%%%%%%%%%%%%%%%%%%%%%%%%%5
+\DeclareMathAlphabet{\mathantt}{OT1}{antt}{li}{it}
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
+\providecommand{\abs}[1]{\lvert#1\rvert}%
+\providecommand{\norm}[1]{\lVert#1\rVert} %
+\providecommand{\ppunto}[2]{\langle#1,#2\rangle}% producto punto
+\providecommand{\dist}[2]{{ d}(#1, #2)} % distancia
+\providecommand{\promed}[1]{{\fam=8 E}\{#1\}}% operador de promedio
+\providecommand{\cov}[2]{{\fam=7 cov}\{#1, #2\}}% operador de covarianza
+\providecommand{\gaus}[2]{{\fam=6 N}(#1 #2)} % FDP Gauss
+\providecommand{\unif}[1]{{\fam=6 U}(#1 )} % FDP Uniforme
+\providecommand{\ve}[1]{{\bf {#1}}} %
+\providecommand{\mat}[1]{{\bm {#1}}} %
+\providecommand{\est}[1]{{\widetilde {#1}}}
+\providecommand{\diag}[1]{{\rm{diag}}(#1)}% operador diagonal
+\DeclareMathOperator{\subconj}{\negthinspace\subset\negthinspace }
+
+% dummy commands to avoid "Undefined control sequence" error.
+\newcommand{\inst}[1]{#1}
+
+\providecommand{\am}[1]{\textcolor{blue}{#1}}
+\providecommand{\gc}[1]{\textcolor{red}{\upshape{#1}}}
+
+
+\usepackage{etoolbox}
+
+\usepackage[nopar]{lipsum} % mock text
+
+\newif\ifcomment
+\newcommand{\Com}{\par\footnotesize\itshape\commenttrue}
+
+\newenvironment{Itemize}
+ {%
+  \edef\Itemizecurrent{\the\font}%
+  \itemize
+  \preto{\item}{\ifcomment\par\Itemizecurrent\fi}%
+ }{%
+   \enditemize
+ }
+
+ \def\@email{}
+ \newcommand{\email}[1]{\gdef\@email{#1}}
+
+$pandoc.tex()$
+$if(lang)$
+\ifLuaTeX
+\usepackage[bidi=basic]{babel}
+\else
+\usepackage[bidi=default]{babel}
+\fi
+$if(babel-lang)$
+\babelprovide[main,import]{$babel-lang$}
+$if(mainfont)$
+\ifPDFTeX
+\else
+\babelfont{rm}[$for(mainfontoptions)$$mainfontoptions$$sep$,$endfor$$if(mainfontfallback)$,RawFeature={fallback=mainfontfallback}$endif$]{$mainfont$}
+\fi
+$endif$
+$endif$
+$for(babel-otherlangs)$
+\babelprovide[import]{$babel-otherlangs$}
+$endfor$
+$for(babelfonts/pairs)$
+\babelfont[$babelfonts.key$]{rm}{$babelfonts.value$}
+$endfor$
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
+$endif$
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+$if(dir)$
+\ifPDFTeX
+  \TeXXeTstate=1
+  \newcommand{\RL}[1]{\beginR #1\endR}
+  \newcommand{\LR}[1]{\beginL #1\endL}
+  \newenvironment{RTL}{\beginR}{\endR}
+  \newenvironment{LTR}{\beginL}{\endL}
+\fi
+$endif$
+$if(biblio-config)$
+$if(natbib)$
+\usepackage[$natbiboptions$]{natbib}
+\bibliographystyle{$if(biblio-style)$$biblio-style$$else$plainnat$endif$}
+\renewcommand\bibfont{\scriptsize}
+$endif$
+$if(biblatex)$
+\usepackage[$if(biblio-style)$style=$biblio-style$,$endif$$for(biblatexoptions)$$biblatexoptions$$sep$,$endfor$]{biblatex}
+$for(bibliography)$
+\addbibresource{$bibliography$}
+$endfor$
+$endif$
+$endif$
+$if(nocite-ids)$
+\nocite{$for(nocite-ids)$$it$$sep$, $endfor$}
+$endif$
+$if(csquotes)$
+\usepackage{csquotes}
+$endif$
+\usepackage{bookmark}
+
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+$if(links-as-notes)$
+% Make links footnotes instead of hotlinks:
+\DeclareRobustCommand{\href}[2]{#2\footnote{\url{#1}}}
+$endif$
+$if(verbatim-in-note)$
+\VerbatimFootnotes % allow verbatim text in footnotes
+$endif$
+\hypersetup{
+$if(title-meta)$
+  pdftitle={$title-meta$},
+$endif$
+$if(author-meta)$
+  pdfauthor={$author-meta$},
+$endif$
+$if(lang)$
+  pdflang={$lang$},
+$endif$
+$if(subject)$
+  pdfsubject={$subject$},
+$endif$
+$if(keywords)$
+  pdfkeywords={$for(keywords)$$keywords$$sep$, $endfor$},
+$endif$
+  pdfcreator={LaTeX via pandoc},
+  unicode=true}
+
+$before-title.tex()$
+$title.tex()$
+
+%%-------------------------------------------------------------------
+%% Options
+%%-------------------------------------------------------------------
+\setbeamercovered{dynamic}
+\setbeamertemplate{navigation symbols}{}%{footline}
+
+\AtBeginSection[]
+{
+  \begin{frame}
+  \frametitle{Outline}
+  \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\begin{document}
+$before-body.tex()$
+
+$for(include-before)$
+$include-before$
+
+$endfor$
+$toc.tex()$
+$if(linestretch)$
+\setstretch{$linestretch$}
+$endif$
+$if(has-frontmatter)$
+\mainmatter
+$endif$
+$body$
+
+$before-bib.tex()$
+
+$if(has-frontmatter)$
+\backmatter
+$endif$
+$if(bibliography)$
+    \begin{frame}[allowframebreaks]
+        \frametitle{References}
+            {\bibliography{$for(bibliography)$$bibliography$$sep$
+            $endfor$
+                }
+            }
+    \end{frame}
+$endif$
+
+$for(include-after)$
+$include-after$
+
+$endfor$
+$after-body.tex()$
+\end{document}

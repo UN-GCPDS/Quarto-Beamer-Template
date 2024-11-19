@@ -3,18 +3,15 @@ author: Marcos Loaiza
 version: 1.0.0
 quarto-required: ">=1.6.0"
 contributes:
+  biblio-style: apalike
   formats:
     common:
-      toc: true
       filters:
         - gcpds.lua
-    pdf:
+    beamer:
       cite-method: natbib
-      include-in-header: 
-        - header.tex
+      theme: GCPDS
       template: "template_beamer.tex"
-      format-resources:
-        - beamerthemeOxygen.sty
       template-partials:
         - "partials/doc-class.tex"
         - "partials/title.tex"
